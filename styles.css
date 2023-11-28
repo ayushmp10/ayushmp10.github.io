@@ -1,16 +1,25 @@
 body {
     background-color: lightskyblue;
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-wrap: wrap;
 }
 h1 {
     color: black;
     text-align: center;
+    width: 100%;
+}
+h1:hover {
+    color:aqua;
+    width:100%;
 }
 .assign {
     margin: 10px;
     padding: 10px;
     background-color: lightgrey;
-    display: flex;
+    display: block;/*instead of flex*/
+    width: 20%;
+    box-shadow: 8px 8px brown;
     border-radius: 20px;
 }
 .assign img {

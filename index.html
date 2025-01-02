@@ -16,6 +16,7 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -31,45 +32,51 @@
 
     <!-- About Section -->
     <section id="about" class="about">
-        <h2>About Me</h2>
         <div class="about-content">
             <img src="Headshot.jpg" alt="Your Photo">
-            <div class="about-text">
-                <p>
-                    Hello, I’m Ayush Parambath, a passionate dual-degree student in Computer Science and Mathematics at
-                    the University of South Carolina. With a strong foundation in programming and a fascination for
-                    problem-solving, I thrive on building innovative solutions, from AI-driven tools at Qatalyst Health
-                    to advancing robotics research with the Artificial Intelligence Institute of South Carolina. My
-                    journey has been fueled by curiosity and a drive to explore the intricate beauty of technology,
-                    blending academic rigor with hands-on projects like a stock prediction app.
-                </p>
-                <div class="skills">
-                    <h3>Skills</h3>
-                    <div class="skills-grid">
-                        <div class="skills-column">
-                            <h4>Languages</h4>
-                            <ul>
-                                <li>HTML/CSS</li>
-                                <li>JavaScript</li>
-                                <li>Python</li>
-                                <li>Java</li>
-                                <li>C++</li>
-                                <li>SQL</li>
-                                <li>TypeScript</li>
-                            </ul>
-                        </div>
-                        <div class="skills-column">
-                            <h4>Frameworks</h4>
-                            <ul>
-                                <li>PyTorch</li>
-                                <li>AWS</li>
-                                <li>Azure</li>
-                                <li>Flutter</li>
-                                <li>MATLAB</li>
-                                <li>Node.js</li>
-                            </ul>
-                        </div>
-                    </div>
+            <div class="about-text-container">
+                <h2>About Me</h2>
+                <div class="about-text">
+                    <p>
+                        Hello, I'm Ayush Parambath, a passionate dual-degree student in Computer Science and Mathematics at
+                        the University of South Carolina. With a strong foundation in programming and a fascination for
+                        problem-solving, I thrive on building innovative solutions, from AI-driven tools at Qatalyst Health
+                        to advancing robotics research with the Artificial Intelligence Institute of South Carolina. My
+                        journey has been fueled by curiosity and a drive to explore the intricate beauty of technology,
+                        blending academic rigor with hands-on projects like a stock prediction app.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skills-grid">
+                <div class="skills-column">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>HTML/CSS</li>
+                        <li>JavaScript</li>
+                        <li>Python</li>
+                        <li>Java</li>
+                        <li>C++</li>
+                        <li>SQL</li>
+                        <li>TypeScript</li>
+                    </ul>
+                </div>
+                <div class="skills-column">
+                    <h3>Frameworks</h3>
+                    <ul>
+                        <li>PyTorch</li>
+                        <li>AWS</li>
+                        <li>Azure</li>
+                        <li>Flutter</li>
+                        <li>MATLAB</li>
+                        <li>Node.js</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -85,8 +92,7 @@
                 <h3>DegreeWorks</h3>
                 <p>Replica of class registration system used at the University of South Carolina</p>
                 <div class="project-links">
-                    <a href="#" target="_blank">Live Demo</a>
-                    <a href="#" target="_blank">GitHub</a>
+                    <a href="https://github.com/ayushmp10/DegreeWorksFrontEnd" target="_blank">GitHub</a>
                 </div>
             </div>
             <!-- Add more project cards -->
@@ -96,7 +102,7 @@
                 <p>Application that predicts stock prices using pandas </p>
                 <div class="project-links">
                     <a href="#" target="_blank">Live Demo</a>
-                    <a href="#" target="_blank">GitHub</a>
+                    <a href="https://github.com/ayushmp10/StockPredictor" target="_blank">GitHub</a>
                 </div>
             </div>
         </div>
@@ -125,6 +131,35 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Fade in sections when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 
 </html>

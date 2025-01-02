@@ -4,7 +4,10 @@
     --secondary-color: #1e40af;   /* Darker blue */
     --accent-color: #3b82f6;      /* Light blue */
     --background-light: #f8fafc;  /* Light background */
+    --background-lighter: #f1f5f9; /* Even lighter background */
     --background-dark: #1e293b;   /* Dark background */
+    --hero-background: #e0e7ff;   /* Light indigo for hero section */
+    --cream-background: #faf6f1;  /* Cream color for sections */
     --text-primary: #1e293b;      /* Main text color */
     --text-secondary: #64748b;    /* Secondary text */
     --white: #ffffff;
@@ -76,20 +79,103 @@ nav {
 
 /* Hero Section */
 .hero {
+    background: linear-gradient(135deg, var(--hero-background) 0%, var(--background-light) 100%);
+    position: relative;
+    z-index: 1;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden; /* For background effects */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%);
+    z-index: -1;
+}
+
+.hero-content {
     text-align: center;
-    background: linear-gradient(135deg, var(--background-light) 0%, var(--white) 100%);
+    padding: 2rem;
+    animation: fadeIn 1.2s ease-out;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    line-height: 1.2;
+    animation: slideUp 1s ease-out;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    animation: slideUp 1s ease-out 0.2s backwards;
 }
 
 .highlight {
     color: var(--primary-color);
+    position: relative;
+    display: inline-block;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color: var(--primary-color);
+    opacity: 0.1;
+    z-index: -1;
+    transform: skewX(-15deg);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
 }
 
 /* Sections */
 section {
+    position: relative;
     padding: 5rem 2rem;
     opacity: 0;
     transform: translateY(20px);
@@ -109,6 +195,9 @@ h2 {
 
 /* About Section */
 .about {
+    background-color: var(--cream-background);
+    position: relative;
+    z-index: 2;
     padding: 5rem 2rem;
 }
 
@@ -176,7 +265,8 @@ h2 {
     background: var(--white);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 5px var(--shadow);
+    box-shadow: 0 4px 6px var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card img {
@@ -336,6 +426,8 @@ html {
 /* Skills Section */
 .skills-section {
     background-color: var(--background-light);
+    position: relative;
+    z-index: 2;
     padding: 5rem 2rem;
     text-align: center; /* Center the entire section */
 }
@@ -384,7 +476,7 @@ html {
     padding: 0.5rem;
     background-color: var(--white);
     border-radius: 5px;
-    box-shadow: 0 2px 5px var(--shadow);
+    box-shadow: 0 2px 4px var(--shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -444,4 +536,39 @@ button,
     :root {
         /* Adjust colors for mobile if needed */
     }
+}
+
+/* Optional: Add subtle dividers between sections */
+section:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--text-secondary),
+        transparent
+    );
+    opacity: 0.2;
+}
+
+/* Ensure proper spacing between sections */
+section:not(:first-child) {
+    margin-top: -1px; /* Prevent double borders */
+}
+
+/* Projects Section */
+.projects {
+    background-color: var(--cream-background);
+    position: relative;
+    z-index: 2;
+    padding: 5rem 2rem;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px var(--shadow);
 }
